@@ -224,7 +224,7 @@
             <p class="last-update" id="last-update">Pembaruan terakhir: --</p>
             
             <div class="telegram-button">
-                <a href="https://t.me/pemantau_banjir_bot" target="_blank" class="btn-telegram">
+                <a href="https://t.me/krenova_Banjir_bot" target="_blank" class="btn-telegram">
                     <img src="https://telegram.org/img/t_logo.svg" width="20" height="20" alt="Telegram">
                     Pantau via Telegram Bot
                 </a>
@@ -232,14 +232,17 @@
         </div>
         
         <footer>
-            <p>©  Sistem Pemantau Banjir | KARYA SISWA SMAN 1 PEJAGOAN</p>
+            <p>©  sistem Pemantau Banjir | KARYA SISWA SMAN 1 PEJAGOAN</p>
         </footer>
     </div>
     
     <script>
         // Konfigurasi ThingSpeak
         const channelID = '2888492';
-        const apiKey = 'TYZ0IKXO5SKPR9ZJ';
+        const apiKey = '4YN29ZRCEEAXIIVH';
+        
+        // Konfigurasi sensor dan wadah
+        const containerHeight = 15; // Tinggi wadah dalam cm
 
         // Elemen UI
         const statusIndicator = document.getElementById('status-indicator');
@@ -269,7 +272,8 @@
             waterValue.textContent = `${level} cm`;
             
             // Update level air dalam visualisasi (maksimum 100%)
-            const heightPercentage = Math.min((level / 30) * 100, 100);
+            // Skala ketinggian air berdasarkan tinggi wadah
+            const heightPercentage = Math.min((level / containerHeight) * 100, 100);
             waterLevel.style.height = `${heightPercentage}%`;
             
             // Update status
@@ -300,7 +304,7 @@
 
         // Fungsi fallback jika tidak ada data dari ThingSpeak
         function simulateData() {
-            const level = Math.random() * 30;
+            const level = Math.random() * containerHeight;
             let status = 'AMAN';
             
             if (level > 20) {
